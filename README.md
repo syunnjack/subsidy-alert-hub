@@ -8,7 +8,7 @@ Recommended repository name: `subsidy-alert-hub`
 
 ## Domain candidates
 
-First candidate: `subsidyalert.jp`
+Confirmed domain: `subsidyalert.jp`
 
 Other candidates:
 
