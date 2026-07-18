@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://subsidyalert.jp/sitemap.xml

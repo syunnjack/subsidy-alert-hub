@@ -1,0 +1,7 @@
+# Subsidy Alert Hub
+
+補助金、助成金、公募、自治体募集の期限を通知し、士業相談、資料販売、申請支援へつなげる。
+
+Notification channels: LINE, X, email, Slack
+Revenue: 士業紹介, 相談送客, 資料販売, 申請支援, 法人プラン
+Primary categories: 補助金, 助成金, 公募, 期限, 自治体
