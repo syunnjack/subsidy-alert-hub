@@ -3,86 +3,29 @@ import './App.css'
 
 const saveKey = 'subsidy-alert-hub.saved'
 const postKey = 'subsidy-alert-hub.posts'
+// 全20の政令指定都市を対象に、カテゴリ（補助金/助成金/公募/期限）を
+// 一巡させたサンプル通知データ。実データ連携までのプレースホルダー。
 const alerts = [
-  {
-    "id": "subsidy-alert-hub-1",
-    "title": "補助金 alert seed 1",
-    "area": "名古屋",
-    "category": "補助金",
-    "score": 95,
-    "summary": "補助金、助成金、公募、自治体募集の期限を通知し、士業相談、資料販売、申請支援へつなげる。 補助金の条件一致時に通知し、保存、送客、課金へつなげます。",
-    "channels": [
-      "LINE",
-      "X"
-    ],
-    "tags": [
-      "補助金",
-      "通知",
-      "UGC",
-      "収益導線"
-    ],
-    "revenue": "士業紹介"
-  },
-  {
-    "id": "subsidy-alert-hub-2",
-    "title": "助成金 alert seed 2",
-    "area": "東京",
-    "category": "助成金",
-    "score": 92,
-    "summary": "補助金、助成金、公募、自治体募集の期限を通知し、士業相談、資料販売、申請支援へつなげる。 助成金の条件一致時に通知し、保存、送客、課金へつなげます。",
-    "channels": [
-      "LINE",
-      "X",
-      "メール"
-    ],
-    "tags": [
-      "助成金",
-      "通知",
-      "UGC",
-      "収益導線"
-    ],
-    "revenue": "相談送客"
-  },
-  {
-    "id": "subsidy-alert-hub-3",
-    "title": "公募 alert seed 3",
-    "area": "大阪",
-    "category": "公募",
-    "score": 89,
-    "summary": "補助金、助成金、公募、自治体募集の期限を通知し、士業相談、資料販売、申請支援へつなげる。 公募の条件一致時に通知し、保存、送客、課金へつなげます。",
-    "channels": [
-      "LINE",
-      "X",
-      "メール",
-      "Slack"
-    ],
-    "tags": [
-      "公募",
-      "通知",
-      "UGC",
-      "収益導線"
-    ],
-    "revenue": "資料販売"
-  },
-  {
-    "id": "subsidy-alert-hub-4",
-    "title": "期限 alert seed 4",
-    "area": "静岡",
-    "category": "期限",
-    "score": 86,
-    "summary": "補助金、助成金、公募、自治体募集の期限を通知し、士業相談、資料販売、申請支援へつなげる。 期限の条件一致時に通知し、保存、送客、課金へつなげます。",
-    "channels": [
-      "LINE",
-      "X"
-    ],
-    "tags": [
-      "期限",
-      "通知",
-      "UGC",
-      "収益導線"
-    ],
-    "revenue": "申請支援"
-  }
+  { "id": "subsidy-alert-hub-1", "title": "札幌市 補助金通知（例）", "area": "札幌市", "category": "補助金", "score": 95, "summary": "補助金、助成金、公募、自治体募集の期限を通知し、士業相談、資料販売、申請支援へつなげる。 補助金の条件一致時に通知し、保存、送客、課金へつなげます。", "channels": ["LINE", "X"], "tags": ["補助金", "通知", "UGC", "収益導線"], "revenue": "士業紹介" },
+  { "id": "subsidy-alert-hub-2", "title": "仙台市 助成金通知（例）", "area": "仙台市", "category": "助成金", "score": 93, "summary": "補助金、助成金、公募、自治体募集の期限を通知し、士業相談、資料販売、申請支援へつなげる。 助成金の条件一致時に通知し、保存、送客、課金へつなげます。", "channels": ["LINE", "X", "メール"], "tags": ["助成金", "通知", "UGC", "収益導線"], "revenue": "相談送客" },
+  { "id": "subsidy-alert-hub-3", "title": "さいたま市 公募通知（例）", "area": "さいたま市", "category": "公募", "score": 91, "summary": "補助金、助成金、公募、自治体募集の期限を通知し、士業相談、資料販売、申請支援へつなげる。 公募の条件一致時に通知し、保存、送客、課金へつなげます。", "channels": ["LINE", "X", "メール", "Slack"], "tags": ["公募", "通知", "UGC", "収益導線"], "revenue": "資料販売" },
+  { "id": "subsidy-alert-hub-4", "title": "千葉市 申請期限通知（例）", "area": "千葉市", "category": "期限", "score": 89, "summary": "補助金、助成金、公募、自治体募集の期限を通知し、士業相談、資料販売、申請支援へつなげる。 申請期限の条件一致時に通知し、保存、送客、課金へつなげます。", "channels": ["LINE", "メール"], "tags": ["期限", "通知", "UGC", "収益導線"], "revenue": "申請支援" },
+  { "id": "subsidy-alert-hub-5", "title": "横浜市 補助金通知（例）", "area": "横浜市", "category": "補助金", "score": 87, "summary": "補助金、助成金、公募、自治体募集の期限を通知し、士業相談、資料販売、申請支援へつなげる。 補助金の条件一致時に通知し、保存、送客、課金へつなげます。", "channels": ["LINE", "X", "Slack"], "tags": ["補助金", "通知", "UGC", "収益導線"], "revenue": "法人プラン" },
+  { "id": "subsidy-alert-hub-6", "title": "川崎市 助成金通知（例）", "area": "川崎市", "category": "助成金", "score": 85, "summary": "補助金、助成金、公募、自治体募集の期限を通知し、士業相談、資料販売、申請支援へつなげる。 助成金の条件一致時に通知し、保存、送客、課金へつなげます。", "channels": ["LINE", "X"], "tags": ["助成金", "通知", "UGC", "収益導線"], "revenue": "士業紹介" },
+  { "id": "subsidy-alert-hub-7", "title": "相模原市 公募通知（例）", "area": "相模原市", "category": "公募", "score": 83, "summary": "補助金、助成金、公募、自治体募集の期限を通知し、士業相談、資料販売、申請支援へつなげる。 公募の条件一致時に通知し、保存、送客、課金へつなげます。", "channels": ["LINE", "X", "メール"], "tags": ["公募", "通知", "UGC", "収益導線"], "revenue": "相談送客" },
+  { "id": "subsidy-alert-hub-8", "title": "新潟市 申請期限通知（例）", "area": "新潟市", "category": "期限", "score": 81, "summary": "補助金、助成金、公募、自治体募集の期限を通知し、士業相談、資料販売、申請支援へつなげる。 申請期限の条件一致時に通知し、保存、送客、課金へつなげます。", "channels": ["LINE", "X", "メール", "Slack"], "tags": ["期限", "通知", "UGC", "収益導線"], "revenue": "資料販売" },
+  { "id": "subsidy-alert-hub-9", "title": "静岡市 補助金通知（例）", "area": "静岡市", "category": "補助金", "score": 79, "summary": "補助金、助成金、公募、自治体募集の期限を通知し、士業相談、資料販売、申請支援へつなげる。 補助金の条件一致時に通知し、保存、送客、課金へつなげます。", "channels": ["LINE", "メール"], "tags": ["補助金", "通知", "UGC", "収益導線"], "revenue": "申請支援" },
+  { "id": "subsidy-alert-hub-10", "title": "浜松市 助成金通知（例）", "area": "浜松市", "category": "助成金", "score": 77, "summary": "補助金、助成金、公募、自治体募集の期限を通知し、士業相談、資料販売、申請支援へつなげる。 助成金の条件一致時に通知し、保存、送客、課金へつなげます。", "channels": ["LINE", "X", "Slack"], "tags": ["助成金", "通知", "UGC", "収益導線"], "revenue": "法人プラン" },
+  { "id": "subsidy-alert-hub-11", "title": "名古屋市 公募通知（例）", "area": "名古屋市", "category": "公募", "score": 75, "summary": "補助金、助成金、公募、自治体募集の期限を通知し、士業相談、資料販売、申請支援へつなげる。 公募の条件一致時に通知し、保存、送客、課金へつなげます。", "channels": ["LINE", "X"], "tags": ["公募", "通知", "UGC", "収益導線"], "revenue": "士業紹介" },
+  { "id": "subsidy-alert-hub-12", "title": "京都市 申請期限通知（例）", "area": "京都市", "category": "期限", "score": 73, "summary": "補助金、助成金、公募、自治体募集の期限を通知し、士業相談、資料販売、申請支援へつなげる。 申請期限の条件一致時に通知し、保存、送客、課金へつなげます。", "channels": ["LINE", "X", "メール"], "tags": ["期限", "通知", "UGC", "収益導線"], "revenue": "相談送客" },
+  { "id": "subsidy-alert-hub-13", "title": "大阪市 補助金通知（例）", "area": "大阪市", "category": "補助金", "score": 71, "summary": "補助金、助成金、公募、自治体募集の期限を通知し、士業相談、資料販売、申請支援へつなげる。 補助金の条件一致時に通知し、保存、送客、課金へつなげます。", "channels": ["LINE", "X", "メール", "Slack"], "tags": ["補助金", "通知", "UGC", "収益導線"], "revenue": "資料販売" },
+  { "id": "subsidy-alert-hub-14", "title": "堺市 助成金通知（例）", "area": "堺市", "category": "助成金", "score": 69, "summary": "補助金、助成金、公募、自治体募集の期限を通知し、士業相談、資料販売、申請支援へつなげる。 助成金の条件一致時に通知し、保存、送客、課金へつなげます。", "channels": ["LINE", "メール"], "tags": ["助成金", "通知", "UGC", "収益導線"], "revenue": "申請支援" },
+  { "id": "subsidy-alert-hub-15", "title": "神戸市 公募通知（例）", "area": "神戸市", "category": "公募", "score": 67, "summary": "補助金、助成金、公募、自治体募集の期限を通知し、士業相談、資料販売、申請支援へつなげる。 公募の条件一致時に通知し、保存、送客、課金へつなげます。", "channels": ["LINE", "X", "Slack"], "tags": ["公募", "通知", "UGC", "収益導線"], "revenue": "法人プラン" },
+  { "id": "subsidy-alert-hub-16", "title": "岡山市 申請期限通知（例）", "area": "岡山市", "category": "期限", "score": 65, "summary": "補助金、助成金、公募、自治体募集の期限を通知し、士業相談、資料販売、申請支援へつなげる。 申請期限の条件一致時に通知し、保存、送客、課金へつなげます。", "channels": ["LINE", "X"], "tags": ["期限", "通知", "UGC", "収益導線"], "revenue": "士業紹介" },
+  { "id": "subsidy-alert-hub-17", "title": "広島市 補助金通知（例）", "area": "広島市", "category": "補助金", "score": 63, "summary": "補助金、助成金、公募、自治体募集の期限を通知し、士業相談、資料販売、申請支援へつなげる。 補助金の条件一致時に通知し、保存、送客、課金へつなげます。", "channels": ["LINE", "X", "メール"], "tags": ["補助金", "通知", "UGC", "収益導線"], "revenue": "相談送客" },
+  { "id": "subsidy-alert-hub-18", "title": "北九州市 助成金通知（例）", "area": "北九州市", "category": "助成金", "score": 61, "summary": "補助金、助成金、公募、自治体募集の期限を通知し、士業相談、資料販売、申請支援へつなげる。 助成金の条件一致時に通知し、保存、送客、課金へつなげます。", "channels": ["LINE", "X", "メール", "Slack"], "tags": ["助成金", "通知", "UGC", "収益導線"], "revenue": "資料販売" },
+  { "id": "subsidy-alert-hub-19", "title": "福岡市 公募通知（例）", "area": "福岡市", "category": "公募", "score": 59, "summary": "補助金、助成金、公募、自治体募集の期限を通知し、士業相談、資料販売、申請支援へつなげる。 公募の条件一致時に通知し、保存、送客、課金へつなげます。", "channels": ["LINE", "メール"], "tags": ["公募", "通知", "UGC", "収益導線"], "revenue": "申請支援" },
+  { "id": "subsidy-alert-hub-20", "title": "熊本市 申請期限通知（例）", "area": "熊本市", "category": "期限", "score": 57, "summary": "補助金、助成金、公募、自治体募集の期限を通知し、士業相談、資料販売、申請支援へつなげる。 申請期限の条件一致時に通知し、保存、送客、課金へつなげます。", "channels": ["LINE", "X", "Slack"], "tags": ["期限", "通知", "UGC", "収益導線"], "revenue": "法人プラン" }
 ]
 const revenuePlans = [
   "士業紹介",
@@ -108,7 +51,7 @@ function readArray(key) {
 }
 
 function App() {
-  const [query, setQuery] = useState('名古屋')
+  const [query, setQuery] = useState('')
   const [category, setCategory] = useState('すべて')
   const [saved, setSaved] = useState(() => readArray(saveKey))
   const [posts, setPosts] = useState(() => readArray(postKey))
@@ -140,11 +83,11 @@ function App() {
       <section className="hero">
         <div>
           <p className="eyebrow">補助金・助成金・自治体募集通知</p>
-          <h1>Subsidy Alert Hub</h1>
+          <h1>補助金アラートハブ</h1>
           <p className="lead">補助金、助成金、公募、自治体募集の期限を通知し、士業相談、資料販売、申請支援へつなげる。</p>
         </div>
         <aside className="hero-panel">
-          <span>subsidyalert.jp / subsidy-alert-hub</span>
+          <span>subsidyalert.jp</span>
           <strong>通知の瞬間に、予約・掲載・クーポン・有料導線へつなげる。</strong>
           <p>LINE、X、メール、Slackを入口に、UGCで鮮度を作りながら収益導線を太くします。</p>
         </aside>
@@ -154,10 +97,10 @@ function App() {
         <select value={category} onChange={(event) => setCategory(event.target.value)}>{categories.map((item) => <option key={item}>{item}</option>)}</select>
       </section>
       <section className="metrics">
-        <article><span>Alert seeds</span><strong>{alerts.length}</strong></article>
-        <article><span>Channels</span><strong>{channels.length}</strong></article>
-        <article><span>Saved</span><strong>{saved.length}</strong></article>
-        <article><span>UGC</span><strong>{posts.length}</strong></article>
+        <article><span>通知サンプル数</span><strong>{alerts.length}</strong></article>
+        <article><span>通知チャネル数</span><strong>{channels.length}</strong></article>
+        <article><span>保存数</span><strong>{saved.length}</strong></article>
+        <article><span>投稿数</span><strong>{posts.length}</strong></article>
       </section>
       <section className="alert-grid">
         {filtered.map((alert) => (
@@ -174,10 +117,10 @@ function App() {
       </section>
       <section className="split">
         <div className="panel">
-          <h2>技術選定</h2>
-          <article><b>Frontend</b><p>Vite + React 19。静的MVPとして軽く、GitHub Pagesへ展開しやすい構成です。</p></article>
+          <h2>サービスの仕組み</h2>
+          <article><b>画面構成</b><p>Vite + React 19。静的MVPとして軽く、GitHub Pagesへ展開しやすい構成です。</p></article>
           <article><b>通知連携</b><p>初期はUI設計、次段階でLINE Messaging API、X API、SendGrid/Mailgun、Slack Incoming Webhooksを接続します。</p></article>
-          <article><b>Data</b><p>MVPは静的seed + localStorage。運用時はSupabaseまたはCloudflare D1へ移行します。</p></article>
+          <article><b>データ基盤</b><p>MVPは静的サンプルデータ + localStorage。運用時はSupabaseまたはCloudflare D1へ移行します。</p></article>
           <article><b>収益ルート</b><p>{revenuePlans.join(' / ')}</p></article>
         </div>
         <div className="panel">
