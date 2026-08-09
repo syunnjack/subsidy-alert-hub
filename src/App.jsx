@@ -30,18 +30,11 @@ const alerts = [
   { "id": "subsidy-alert-hub-19", "area": "福岡市", "title": "令和8年度福岡市新規創業促進補助金", "status": "受付中", "period": "令和8年4月1日〜令和9年3月31日（予算到達次第終了）", "summary": "国の特定創業支援等事業の証明を受け登録免許税の軽減を受けた創業者に、残りの登録免許税相当額を補助（株式会社7.5万円／合同会社3万円・定額）。", "sourceUrl": "https://www.city.fukuoka.lg.jp/keizai/r-support/business/tokutei-sougyou-sientoujigyou_08.html", "sourceLabel": "福岡市" },
   { "id": "subsidy-alert-hub-20", "area": "熊本市", "title": "令和8年度（2026年度）熊本市DX環境整備事業補助金", "status": "締切済", "period": "令和8年7月1日〜令和9年1月29日予定（予算額到達のため7月31日付で募集終了）", "summary": "熊本市内の小規模・中小企業者等の業務変革（デジタルツール導入・人材育成・セキュリティ対策等）経費を補助。", "sourceUrl": "https://www.city.kumamoto.jp/kiji00371665/index.html", "sourceLabel": "熊本市" }
 ]
-const revenuePlans = [
-  "士業紹介",
-  "相談送客",
-  "資料販売",
-  "申請支援",
-  "法人プラン"
-]
 const faqs = [
   ['掲載している制度は本当に実在しますか？', 'はい。各都市の公式サイト（city.◯◯.lg.jp等）を確認したうえで掲載しています。各カードの「出典」リンクから必ず公式ページで最新の募集状況をご確認ください。'],
   ['「締切済」の制度も載せているのはなぜですか？', '募集期間は年度ごとに数週間〜数ヶ月しかない制度が多く、今回締切済みでも来年度に同様の制度が再開されるケースが多いためです。次回募集の目安として参考にしてください。'],
-  ['通知からどう収益化しますか？', '無料通知で接点を作り、条件一致時に予約、掲載、クーポン、有料通知、スポンサー枠へ誘導します。'],
-  ['LINE・X・メール・Slackの使い分けは？', 'LINEは個人の即時通知、Xは拡散、メールは週次まとめ、Slackは店舗や法人運用向けです。'],
+  ['保存した制度はどこで確認できますか？', '「保存する」を押すとこの端末（ブラウザ）に保存され、次回このページを開いたときも一覧から確認できます。'],
+  ['LINEやメールでの通知には対応していますか？', '現在は準備中です。対応次第、このページでお知らせします。'],
 ]
 
 function readArray(key) {
@@ -82,12 +75,12 @@ function App() {
         <div>
           <p className="eyebrow">補助金・助成金・自治体募集通知</p>
           <h1>補助金アラートハブ</h1>
-          <p className="lead">補助金、助成金、公募、自治体募集の期限を通知し、士業相談、資料販売、申請支援へつなげる。</p>
+          <p className="lead">全国の政令指定都市が実施する補助金・助成金を、締切前にまとめて確認できます。</p>
         </div>
         <aside className="hero-panel">
           <span>subsidyalert.jp</span>
-          <strong>通知の瞬間に、予約・掲載・クーポン・有料導線へつなげる。</strong>
-          <p>LINE、X、メール、Slackを入口に、UGCで鮮度を作りながら収益導線を太くします。</p>
+          <strong>気になる制度を保存して、あとからまとめて見返せます。</strong>
+          <p>対応都市は今後も追加予定です。LINEやメールでの通知機能も準備中です。</p>
         </aside>
       </section>
       <section className="controls" aria-label="検索条件">
@@ -111,43 +104,34 @@ function App() {
             <p>{alert.summary}</p>
             <p className="period">申請期間: {alert.period}</p>
             <p className="source"><a href={alert.sourceUrl} target="_blank" rel="noopener noreferrer">出典: {alert.sourceLabel}公式サイトで見る</a></p>
-            <button type="button" onClick={() => toggleSave(alert.id)}>{saved.includes(alert.id) ? '保存済み' : '通知導線に保存'}</button>
+            <button type="button" onClick={() => toggleSave(alert.id)}>{saved.includes(alert.id) ? '保存済み' : '保存する'}</button>
           </article>
         ))}
       </section>
       <section className="split">
         <div className="panel">
-          <h2>サービスの仕組み</h2>
-          <article><b>画面構成</b><p>Vite + React 19。静的MVPとして軽く、GitHub Pagesへ展開しやすい構成です。</p></article>
-          <article><b>通知連携</b><p>初期はUI設計、次段階でLINE Messaging API、X API、SendGrid/Mailgun、Slack Incoming Webhooksを接続します。</p></article>
-          <article><b>データ基盤</b><p>MVPは静的サンプルデータ + localStorage。運用時はSupabaseまたはCloudflare D1へ移行します。</p></article>
-          <article><b>収益ルート</b><p>{revenuePlans.join(' / ')}</p></article>
+          <h2>データについて</h2>
+          <article><b>情報源</b><p>各都市の公式サイト（city.◯◯.lg.jp等）を確認し、実在する制度のみ掲載しています。</p></article>
+          <article><b>正式な申請は公式サイトで</b><p>本サイトは制度の把握・比較を目的としており、申請の受付は行っていません。「出典」リンク先の公式サイトで最新の要件・書類をご確認ください。</p></article>
+          <article><b>保存データの扱い</b><p>「保存する」で保存した制度は、この端末（ブラウザ）にのみ記録されます。他の端末とは共有されません。</p></article>
         </div>
         <div className="panel">
-          <h2>UGC・通知リクエスト</h2>
-          <p>現地確認、在庫、空席、価格、閉店、口コミ、通知希望条件を集めて、鮮度と検索ページを増やします。</p>
+          <h2>投稿・通知リクエスト</h2>
+          <p>「この都市の情報も知りたい」「この制度、今年も再開してほしい」といったご要望や、申請時に気づいたことなどをお寄せください。</p>
           <form className="ugc-form" onSubmit={addPost}>
-            <input value={form.title} onChange={(event) => setForm({ ...form, title: event.target.value })} placeholder="通知リクエスト名" />
-            <input value={form.channel} onChange={(event) => setForm({ ...form, channel: event.target.value })} placeholder="LINE / X / メール / Slack" />
-            <input value={form.memo} onChange={(event) => setForm({ ...form, memo: event.target.value })} placeholder="条件・口コミ・現地メモ" />
+            <input value={form.title} onChange={(event) => setForm({ ...form, title: event.target.value })} placeholder="タイトル（例: ◯◯市の追加希望）" />
+            <input value={form.channel} onChange={(event) => setForm({ ...form, channel: event.target.value })} placeholder="都市名・制度名など" />
+            <input value={form.memo} onChange={(event) => setForm({ ...form, memo: event.target.value })} placeholder="要望・気づいた点など" />
             <button>投稿</button>
           </form>
           <div className="post-list">
-            {posts.length === 0 && <p className="empty">公開後は通知希望とUGCで鮮度を作ります。</p>}
+            {posts.length === 0 && <p className="empty">まだ投稿がありません。気になることがあればぜひお寄せください。</p>}
             {posts.map((post) => <article key={post.id}><b>{post.title}</b><p>{post.memo}</p><small>{post.channel} / {post.date}</small></article>)}
           </div>
         </div>
       </section>
-      <section className="seo-section">
-        <h2>SEO / AIO / LLMO</h2>
-        <div className="seo-grid">
-          <article><b>地域ページ</b><p>地域名、駅名、施設名ごとに通知ニーズを拾います。</p></article>
-          <article><b>条件ページ</b><p>空き、値下げ、閉店、在庫、混雑、期限など行動直前の検索を狙います。</p></article>
-          <article><b>法人ページ</b><p>掲載、スポンサー、Slack通知、レポート、SaaS契約へつなげます。</p></article>
-        </div>
-      </section>
       <section className="faq-section">
-        <h2>FAQ</h2>
+        <h2>よくある質問</h2>
         <div className="faq-grid">{faqs.map(([q, a]) => <article key={q}><h3>{q}</h3><p>{a}</p></article>)}</div>
       </section>
     </main>
