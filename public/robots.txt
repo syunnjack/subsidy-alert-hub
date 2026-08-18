@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://subsidy-alert-hub.vercel.app/sitemap.xml
+Sitemap: https://subsidyalert.jp/sitemap.xml
